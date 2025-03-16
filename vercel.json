@@ -18,10 +18,15 @@
       },
       {
         "src": "/(.*)",
-        "dest": "/src/build/index.html",
         "headers": {
           "cache-control": "no-cache"
-        }
+        },
+        "dest": "src/build/$1",
+        "continue": true
+      },
+      {
+        "src": "/(.*)",
+        "dest": "src/build/index.html"
       }
     ]
   }
