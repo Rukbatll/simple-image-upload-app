@@ -1,32 +1,28 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "api/upload.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "src/package.json",
-        "use": "@vercel/static-build",
-        "config": { "distDir": "build" }
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "/api/upload.js"
-      },
-      {
-        "src": "/(.*)",
-        "headers": {
-          "cache-control": "no-cache"
-        },
-        "dest": "src/build/$1",
-        "continue": true
-      },
-      {
-        "src": "/(.*)",
-        "dest": "src/build/index.html"
-      }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/upload.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "src/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/upload.js"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "/src/build/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/src/build/index.html"
+    }
+  ]
+}
