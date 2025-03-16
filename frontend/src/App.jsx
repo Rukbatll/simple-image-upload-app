@@ -2,47 +2,37 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [images, setImages] = useState([]);
 
-  const handleImageUpload = (event) => {
+  const handleImageUpload = async (event) => {
     const file = event.target.files[0];
-    if (file) {
-      if (!file.type.startsWith("image/")) {
-        alert("Please upload a valid image file (png, jpg)");
-        return;
+    if (file && file.type.startsWith('image/')) {
+      const formData = new FormData();
+      formData.append('image', file);
+      try {
+        const response = await fetch('http://localhost:5000/upload', {
+          method: 'POST',
+          body: formData,
+        });
+        if (!response.ok) throw new Error('Upload failed');
+        const data = await response.json();
+        setImages((prev) => [...prev, data.imageUrl]);
+      } catch (error) {
+        console.error('Upload error:', error);
+        alert('Failed to upload image');
       }
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImage(reader.result);
-      };
-      reader.readAsDataURL(file);
+    } else {
+      alert('Please upload a valid image file.');
     }
-  };
-
-  const handleClear = () => {
-    setSelectedImage (null);
   };
 
   return (
     <div className="App">
       <h1>Image Uploader</h1>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-      />
-      {selectedImage ? (
-        <div className="preview">
-          <img
-            src={selectedImage}
-            alt="Uploaded Preview"
-            style={{ maxWidth: '300px', margin: '10px' }}
-          />
-          <button onClick={handleClear}>Clear</button>
-        </div>
-      ) : (
-        <p>No image uploaded yet.</p>
-      )}
+      <input type="file" onChange={handleImageUpload} />
+      {images.map((image, index) => (
+        <img key={index} src={image} alt={`Preview ${index}`} style={{ maxWidth: '300px' }} />
+      ))}
     </div>
   );
 }
