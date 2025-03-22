@@ -23,12 +23,6 @@ app.post('/upload', upload.single('image'), async (req, res) => {
   }
 
   try {
-    // Upload the file to Vercel Blob using the put function
-    const { url } = await put(req.file.originalname, req.file.buffer, {
-      access: 'public', // Publicly accessible URL
-      token: process.env.BLOB_READ_WRITE_TOKEN, // Auth token (optional locally, auto-injected on Vercel)
-    });
-
     res.json({
       message: 'File uploaded successfully',
       filename: req.file.originalname,
