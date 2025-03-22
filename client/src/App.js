@@ -20,7 +20,7 @@ function App() {
     formData.append('image', file);
 
     try {
-      const response = await fetch('http://localhost:5000/upload', {
+      const response = await fetch('https://simple-image-upload-app.vercel.app/upload', {
         method: 'POST',
         body: formData,
       });
@@ -42,7 +42,6 @@ function App() {
           type="file"
           accept="image/*"
           onChange={handleFileChange}
-          value={file ? undefined : ''}
         />
         <button type="submit">Upload</button>
       </form>
