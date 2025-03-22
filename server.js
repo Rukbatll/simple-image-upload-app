@@ -23,6 +23,11 @@ app.post('/upload', upload.single('image'), async (req, res) => {
   }
 
   try {
+    const { url } = await put(req.file.originalname, req.file.buffer, {
+      access: "public",
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    });
+
     res.json({
       message: 'File uploaded successfully',
       filename: req.file.originalname,
