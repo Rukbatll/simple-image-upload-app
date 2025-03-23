@@ -21,7 +21,7 @@ function App() {
 
     try {
       // http://localhost:5000 or https://simple-image-upload-app.vercel.app
-      const response = await fetch('http://localhost:5000/upload', {
+      const response = await fetch('https://simple-image-upload-app.vercel.app/upload', {
         method: 'POST',
         body: formData,
       });
