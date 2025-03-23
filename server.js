@@ -22,6 +22,10 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     return res.status(400).json({ message: 'No file uploaded' });
   }
 
+  if (!req.file.mimetype.startsWith("image/")) {
+    return res.status(400).json({ message: "Only images are allowed"});
+  }
+
   try {
     const { url } = await put(req.file.originalname, req.file.buffer, {
       access: "public",

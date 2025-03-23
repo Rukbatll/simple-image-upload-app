@@ -20,11 +20,16 @@ function App() {
     formData.append('image', file);
 
     try {
-      const response = await fetch('https://simple-image-upload-app.vercel.app/upload', {
+      // http://localhost:5000 or https://simple-image-upload-app.vercel.app
+      const response = await fetch('http://localhost:5000/upload', {
         method: 'POST',
         body: formData,
       });
       const data = await response.json();
+      if (!response.ok) {
+        setMessage(data.message);
+        return;
+      }
       setMessage(data.message);
       setImageUrl(data.url);
       setFile(null);
