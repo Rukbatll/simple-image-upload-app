@@ -11,7 +11,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ origin: "https://simple-image-upload-app-client.vercel.app" }));
+app.use(cors({ origin: ['http://localhost:3000', 'https://simple-image-upload-app-client.vercel.app'] }));
 
 // Configure Multer to store files in memory
 const upload = multer({ storage: multer.memoryStorage() });
