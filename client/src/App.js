@@ -100,7 +100,8 @@ function App() {
         backgroundColor: "#F5F5F5",
       }}
     >
-      <h1>Image Uploader</h1>
+
+      <header>Image Uploader</header>
       <label htmlFor="fileInput">
         <div
           onDragOver={handleDragOver}
@@ -114,6 +115,9 @@ function App() {
             padding: '20px',
             backgroundColor: '#FFFFFF',
             cursor: "pointer",
+            height: "300px",
+            width: "500px",
+            alignContent: "center",
           }}
         >
           <div style={{ textAlign: "center" }}>
