@@ -1,38 +1,128 @@
-.App {
+/* Default to light theme */
+:root, .theme-light {
+  --background-color: #F5F5F5;
+  --header-bg: #FFFFFF;
+  --header-text: #333;
+  --drag-drop-bg: #FFFFFF;
+  --drag-drop-border: #d1d5db;
+  --drag-drop-border-dragging: #007bff;
+  --text-primary: #000;
+  --text-secondary: #666;
+  --link-color: #007bff;
+  --button-bg: #007bff;
+  --button-text: #FFFFFF;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --drag-drop-outline: #ffffff;
+}
+
+/* Dark theme */
+.theme-dark {
+  --background-color: #121212;
+  --header-bg: #1a1a1a;
+  --header-text: #e0e0e0;
+  --drag-drop-bg: #2a2a2a;
+  --drag-drop-border: #4a4a4a;
+  --drag-drop-border-dragging: #007bff;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --link-color: #1e90ff;
+  --button-bg: #1e90ff;
+  --button-text: #FFFFFF;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --drag-drop-outline: #2a2a2a;
+}
+
+/* Header styles */
+header {
+  background-color: var(--header-bg);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 20px;
+  color: var(--header-text);
+  margin: 0;
+}
+
+header button {
+  padding: 5px 10px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Main content styles */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+.logo-letters {
+  fill: var(--header-text);
+}
+
+/* Drag-and-drop zone styles */
+.drag-drop-zone {
+  border: 2px dashed var(--drag-drop-border);
+  outline: 8px solid var(--drag-drop-outline);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  padding: 20px;
+  background-color: var(--drag-drop-bg);
+  cursor: pointer;
+  height: 300px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drag-drop-zone.dragging {
+  border: 2px dashed var(--drag-drop-border-dragging);
+}
+
+.drag-drop-content {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.drag-drop-content img {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.drag-drop-content p {
+  color: var(--text-primary);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.drag-drop-content p .browse-link {
+  color: var(--link-color);
+  text-decoration: underline;
 }
 
-.App-link {
-  color: #61dafb;
+.drag-drop-content p.secondary {
+  color: var(--text-secondary);
+  font-size: 14px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Message and uploaded image styles */
+.message {
+  color: var(--text-primary);
+}
+
+.uploaded-image-section h3 {
+  color: var(--text-primary);
+}
+
+.uploaded-image-section img {
+  max-width: 300px;
 }
