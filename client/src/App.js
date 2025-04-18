@@ -10,6 +10,7 @@ function App() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'light';
   });
+  const [loading, setLoading] = useState(false);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -35,6 +36,7 @@ function App() {
       return;
     }
 
+    setLoading(true);
     const formData = new FormData();
     formData.append('image', fileToUpload);
 
@@ -66,8 +68,11 @@ function App() {
     } catch (error) {
       setMessage('Network error');
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
+  
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -99,6 +104,16 @@ function App() {
 
   return (
     <div className={`theme-${theme}`}>
+    {loading && (
+     <div className='loading-screen'>
+      <div className="progress-container">
+        <p>Uploading, please wait...</p>
+        <div className="progress-bar">
+          <div className="progress-fill"></div>
+        </div>
+      </div>
+     </div> 
+    )}
       <header>
       <svg width="120" height="26" viewBox="0 0 120 26" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path opacity="0.6" d="M0 2C0 0.895431 0.895431 0 2 0H14C15.1046 0 16 0.895431 16 2V14C16 15.1046 15.1046 16 14 16H2C0.895431 16 0 15.1046 0 14V2Z" fill="#9DC4F8"/>
