@@ -117,6 +117,29 @@ function App() {
     }
   };
 
+  const handleDownload = () => {
+    if (imageUrl) {
+      fetch(imageUrl)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const blobUrl = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = blobUrl;
+        anchor.download = "image";
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+        URL.revokeObjectURL(blobUrl);
+      })
+      .catch((error) => {
+        console.error("Error downloading the image: ", error)
+        alert("Failed to download the image, please try again")
+      })
+    } else {
+      alert("No image URL available for download!");
+    }
+  }
+
   return (
     <div className={`theme-${theme}`}>
     {loading && (
@@ -173,7 +196,7 @@ function App() {
             <img src={imageUrl} alt="Uploaded" />
             <div className="button-group">
               <button onClick={handleShare}>Share</button>
-              
+              <button onClick={handleDownload}>Download</button>
             </div>
           </div>
         )}
