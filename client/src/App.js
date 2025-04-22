@@ -102,6 +102,21 @@ function App() {
     }
   };
 
+  const handleShare = () => {
+    if (imageUrl) {
+      navigator.clipboard.writeText(imageUrl)
+        .then(() => {
+          alert('Image URL copied to clipboard!');
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(`Failed to copy! This is the url: ${imageUrl}`);
+        })
+    } else {
+      alert("No image to copy!");
+    }
+  };
+
   return (
     <div className={`theme-${theme}`}>
     {loading && (
@@ -155,8 +170,11 @@ function App() {
         {message && <p className="message">{message}</p>}
         {imageUrl && (
           <div className="uploaded-image-section">
-            <h3>Uploaded Image:</h3>
             <img src={imageUrl} alt="Uploaded" />
+            <div className="button-group">
+              <button onClick={handleShare}>Share</button>
+              
+            </div>
           </div>
         )}
       </main>
