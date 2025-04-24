@@ -48,12 +48,16 @@ header h1 {
 }
 
 header button {
-  padding: 5px 10px;
+  padding: 5px;
   background-color: var(--button-bg);
-  color: var(--button-text);
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.theme-toggle-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .logo-letters {
@@ -114,7 +118,6 @@ main {
   font-size: 14px;
 }
 
-/* Message and uploaded image styles */
 .message {
   color: var(--text-primary);
 }
@@ -124,10 +127,11 @@ main {
 }
 
 .uploaded-image-section img {
-  max-width: 300px;
+  max-width: 400px;
+  border-radius: 8px;
+  outline: 8px solid var(--drag-drop-outline);
 }
 
-/* Loading screen styles */
 .loading-screen {
   position: fixed;
   top: 0;
@@ -172,5 +176,22 @@ main {
 
 @keyframes slide {
   0% { transform: translateX(-100%); }
-  100% { transform: translateX(500%); }
+  100% { transform: translateX(1000%); }
+}
+
+.button-group {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+#download, #share {
+  background-color: #3662E3;
+  color: #F2F5F9;
+  border: 0px solid;
+  border-radius: 7px;
+  width: 5rem;
+  height: 2rem;
+  font-size: 0.85rem;
 }
