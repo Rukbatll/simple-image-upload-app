@@ -1,7 +1,7 @@
 /* Default to light theme */
 :root, .theme-light {
-  --background-color: #F5F5F5;
-  --header-bg: #FFFFFF;
+  --background-color: #F9FAFBCC;
+  --header-bg: #F9FAFBCC;
   --header-text: #333;
   --drag-drop-bg: #FFFFFF;
   --drag-drop-border: #d1d5db;
@@ -17,11 +17,11 @@
 
 /* Dark theme */
 .theme-dark {
-  --background-color: #121212;
-  --header-bg: #1a1a1a;
+  --background-color: #121826;
+  --header-bg: #121826;
   --header-text: #e0e0e0;
-  --drag-drop-bg: #2a2a2a;
-  --drag-drop-border: #4a4a4a;
+  --drag-drop-bg: #212936;
+  --drag-drop-border: #4D5562;
   --drag-drop-border-dragging: #007bff;
   --text-primary: #e0e0e0;
   --text-secondary: #b0b0b0;
@@ -29,7 +29,7 @@
   --button-bg: #1e90ff;
   --button-text: #FFFFFF;
   --shadow-color: rgba(0, 0, 0, 0.1);
-  --drag-drop-outline: #2a2a2a;
+  --drag-drop-outline: #212936;
 }
 
 /* Header styles */
@@ -39,6 +39,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: solid 1px var(--drag-drop-border);
 }
 
 header h1 {
@@ -49,15 +50,17 @@ header h1 {
 
 header button {
   padding: 5px;
-  background-color: var(--button-bg);
-  border: none;
-  border-radius: 4px;
+  background-color: var(--drag-drop-bg);
+  border: solid 1px var(--drag-drop-border);
+  border-radius: 10px;
   cursor: pointer;
+  width: 42px;
+  height: 42px;
 }
 
 .theme-toggle-icon {
-  width: 24px;
-  height: 24px;
+  width: 25px;
+  height: 25px;
 }
 
 .logo-letters {
